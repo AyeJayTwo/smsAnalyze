@@ -15,6 +15,10 @@ local.properties
 .classpath
 .settings/
 .loadpath
+test_sms.xml
+
+*.xml
+*.txt
 
 # External tool builders
 .externalToolBuilders/
