@@ -7,7 +7,7 @@ import sqlite3
 
 
 """Set up the file to be read"""
-with open("sms_demo.xml", "r") as filetoberead:
+with open("test_sms.xml", "r") as filetoberead:
     sms_file = filetoberead.readlines()
 
 """Get rid of header information and read only text messages"""
@@ -66,14 +66,12 @@ name = []
 receive = []
 sent = []
 
-print len(z)
 for each in z:
-    print each
     name.append(each[0])
     receive.append(each[1])
     sent.append(each[3])
-
-print len(receive)
+    
+plt.subplot2grid((2,2),(0,0))
 
 ind = np.arange(len(z))
 width = 0.9
@@ -82,7 +80,6 @@ p2 = plt.bar(ind, sent, width, color = 'b', bottom = receive)
 plt.xlabel('Unknown People')
 plt.ylabel('Total Sent')
 plt.legend( (p1[0], p2[0]), ('Received','Sent'))
-plt.show()
 
 
 """-----------------------------------------------
@@ -93,6 +90,8 @@ dates = []
 for i in range(0, 7):
     cursor.execute(sq1, [(i)])
     dates.append(len(cursor.fetchall()))
+    
+plt.subplot2grid((2,2),(0,1))
 
 ind = np.arange(7)
 width = .85
@@ -100,7 +99,6 @@ p1 = plt.bar(ind, dates, width, color='b')
 plt.xticks(ind + width / 2., ('M', 'T', 'W', 'Th', 'F', 'S', 'S'))
 plt.ylabel('Total Texts')
 plt.title('Total Texts by Day')
-plt.show()
 
 """-----------------------------------------------
 Select based on month of the year; possibly more
@@ -111,14 +109,13 @@ months = []
 for i in range(1, 13):
     cursor.execute(sq2, [(i)])
     months.append(len(cursor.fetchall()))
-    
+plt.subplot(223)
 ind = np.arange(len(months))
 width = 0.85
-p2 = plt.bar(ind, months, width, color='r')
+#p2 = plt.bar(ind, months, width, color='r')
 plt.xticks(ind + width / 2., ('J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'))
 plt.ylabel('Total Texts')
 plt.title('Total Texts by Month')
-plt.show()
 
 
 """-----------------------------------------------
@@ -137,6 +134,8 @@ for i in range(len(x)):
     ordinal_dates.append(date(x[i][0],x[i][1],x[i][2]))
     
 d = matplotlib.dates.date2num(ordinal_dates)
+
+plt.subplot2grid((2,2),(1,0),colspan=2)
 
 win_size = 30
 window = [1./win_size]*win_size

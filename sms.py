@@ -1,3 +1,19 @@
+def get_area(txt):
+    """Returns area code from sms xml"""
+    phone = txt.split('address="', 1)[1].split('" date=')[0]
+    return clean_area(phone)
+
+def clean_area(test):
+    number = ""  # create an empty number
+    for i in test:
+        if i in "0123456789":  # iterate over each item and extract only the numbers
+            number += i
+    
+    # Remove leading 1 from country code
+    if number[0] == "1": number = number[1:] 
+    
+    return number[0:3]
+
 def get_phone(txt):
     """Returns phone number from sms xml"""
     phone = txt.split('address="', 1)[1].split('" date=')[0]

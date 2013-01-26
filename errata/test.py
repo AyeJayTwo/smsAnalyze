@@ -1,8 +1,8 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
-import matplotlib.ticker as ticker
-from common import *
+#import numpy as np
+#import matplotlib.pyplot as plt
+#import matplotlib.mlab as mlab
+#import matplotlib.ticker as ticker
+#from common import *
 
 #r = mlab.csv2rec('../data/aapl.csv')
 #r.sort()
